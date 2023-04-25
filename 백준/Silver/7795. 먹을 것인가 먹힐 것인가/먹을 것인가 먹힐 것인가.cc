@@ -1,33 +1,40 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
-int t, n, m;
-vector<int> a, b;
-
 int main() {
-	scanf("%d",&t);
-	while (t--) {
-		scanf("%d%d", &n, &m);
-		a = vector<int>(n);
-		b = vector<int>(m);
+    int T;
+    cin >> T;
+    while (T--) {
+        int a, b;
+        cin >> a >> b;
 
-		for (int i = 0; i < n; i++)scanf("%d", &a[i]);
-		for (int i = 0; i < m; i++)scanf("%d", &b[i]);
-		
-		sort(a.begin(), a.end());
-		sort(b.begin(), b.end());
+        vector<int> arraya (a);
+        vector<int> arrayb (b);
 
-		int ans = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++)
-				if (a[i] > b[j]) {
-					ans++;
-				}
-				else break;
-		}
-		printf("%d\n", ans);
-	}
-	return 0;
+        for (int i = 0; i < a; i++) {
+            cin >> arraya[i];
+        }
+
+        for (int i = 0; i < b; i++) {
+            cin >> arrayb[i];
+        }
+
+        sort(arraya.begin(), arraya.end());
+        sort(arrayb.begin(), arrayb.end());
+
+        int count = 0;
+        int j = 0;
+        for (int i = 0; i < a; i++) {
+            while (j < b && arraya[i] > arrayb[j]) {
+                j++;
+            }
+            count += j;
+        }
+        cout << count << "\n";
+        arraya.clear();
+        arrayb.clear();
+    }
+    return 0;
 }
