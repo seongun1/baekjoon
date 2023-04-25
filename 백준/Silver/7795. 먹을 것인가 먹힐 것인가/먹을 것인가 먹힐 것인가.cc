@@ -3,6 +3,24 @@
 #include <algorithm>
 using namespace std;
 
+void quicksort(int a, int b, vector<int>& array) {
+    int pivot = (a + b) / 2;
+    if (a > b) return;
+    int left = a;
+    int right = b;
+    while (left <= right) {
+        while (array[left] < array[pivot]) left++;
+        while (array[right] > array[pivot]) right--;
+        if (left <= right) {
+            swap(array[left], array[right]);
+            left++;
+            right--;
+        }
+    }
+    quicksort(a, right, array);
+    quicksort(left, b, array);
+}
+
 int main() {
     int T;
     cin >> T;
