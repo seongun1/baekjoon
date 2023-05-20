@@ -6,7 +6,7 @@ int N; // 유저의 수
 int M; // 친구 관계의 수
 int temp;
 int a[101][101]; // 친구의 관계를 담는 배열
-const int INF = 1000000;
+const int INF = 10000;
 void floid() {
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= N; j++) {
