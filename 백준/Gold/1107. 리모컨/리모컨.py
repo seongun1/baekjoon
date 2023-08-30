@@ -4,9 +4,9 @@ input = sys.stdin.readline
 n = int(input()) # 이동하려고 하는 채널
 m = int(input()) # 고장난 버튼의 개수
 if m:
-    broken = set(input().split())
+    broken = list(map(str,input().split()))
 else:
-    broken = set()
+    broken = []
 remote = [i for i in range(10)]
 
 standard = abs(n-100) # 최댓값
