@@ -8,12 +8,7 @@ arr.sort(reverse=True)
 #print(arr)
 
 count =0
-while(k):
-    for a in arr:
-        if a>k:
-            continue
-        coin = k // a
-        k -= a * coin
-        count +=coin
-        break
+for i in arr:
+    count += k //i
+    k = k%i
 print(count)
