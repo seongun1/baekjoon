@@ -13,4 +13,4 @@ for i,a in enumerate(arr):
                 ans[j] = i+1
                 break
             
-print(' '.join(map(str,ans)))
+print(*ans)
