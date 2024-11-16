@@ -7,7 +7,6 @@ arr =[list(map(int,input().split())) for _ in range(n)]
 MAXSIZE = -1
 answer = [[MAXSIZE] *m for _ in range(n)]
 visited =  [[False] *m for _ in range(n)]
-#print(answer)
 
 #목표 지점 찾기
 def find_start():
@@ -18,11 +17,6 @@ def find_start():
 def print_arr(map_arr):
     for row in map_arr:
        print(' '.join(map(str,row)))
-
-# print(find_start())
-#print_arr(arr)
-# print_arr(answer)
-# print(visited)
 # 목표 지점 - 원하는 지점까지의 거리 구하기
 # 목표 지점으로부터 dfs를 활용해, 덱에 거리를 넣는다. 
 def find_distance(n,m):
@@ -32,7 +26,6 @@ def find_distance(n,m):
         return 0<=x<n and 0<=y<m
 
     target_x,target_y = find_start() #목표지점
-    #print(target_x,target_y,'++')
 
     visited[target_x][target_y] = True
     que = deque([(target_x,target_y)])
