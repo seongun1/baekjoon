@@ -3,10 +3,8 @@ input = sys.stdin.readline
 
 n = int(input())
 cnt=0
-dp =list([0] *(10) for _ in range(n+1))
+dp =list([1] *(10) for _ in range(n+1))
 #print(dp)
-for i in range(10):
-        dp[1][i] = 1
 if n>1:
     for k in range(2,n+1):
         dp[k][0] = sum(dp[k-1])
