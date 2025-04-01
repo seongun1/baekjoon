@@ -16,21 +16,18 @@ sentence = list(input().split())
 
 def print_answer(sentence):
     
-    for s in sentence:
-        flag = False
+    for s in sentence: # flag 대신에 for-else 문을 활용용
         for candidate in arr:
             if len(candidate) >0 and s == candidate[0]:
                 #print(candidate[0])
                 candidate.popleft()
                 flag = True
                 break
-        if not flag:
+        else:
             return "Impossible"
         
     #단어를 다 적었는데 앵무새가 말한 단어가 남아 있다면 -1
-    for candidate in arr:
-        if candidate:
-            return "Impossible"
-        
+    if any(candidate for candidate in arr):
+        return "Impossible"
     return "Possible"
 print(print_answer(sentence))
