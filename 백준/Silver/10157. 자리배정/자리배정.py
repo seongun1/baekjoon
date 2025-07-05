@@ -15,6 +15,7 @@ count =1
 cur_row,cur_col = r-1 ,0
 ans_x,ans_y = 1,1
 arr[cur_row][cur_col] = (ans_x,ans_y)
+
 def print_arr():
     for a in arr:
         for i in a:
@@ -25,8 +26,7 @@ if r*c < k:
     print(0)
     exit()
 
-while  (count < k):
-    count +=1
+for _ in range(1,k):
     next_row ,next_col = cur_row + dx[dir] , cur_col + dy[dir]
 
     #만약 arr을 넘어가면, 방향 전환
