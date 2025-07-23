@@ -1,5 +1,3 @@
-from collections import deque
-
 def solution(storage, requests):
     arr = []
     arr.append(list('0' * (len(list(storage[0])) +2)))
