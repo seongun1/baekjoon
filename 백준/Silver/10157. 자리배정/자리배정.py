@@ -29,11 +29,5 @@ while (seat < k): #대기번호 k 인사람이 올떄까지 (대기번호 k까�
     arr[x][y] = seat
     #print('==',ans_x,ans_y,dir,x,y)
 
-def print_arr():
-    for a in arr:
-        for i in a:
-            print(i,end=' ')
-        print()
-#print_arr()
 
 print(y+1,n-x)
