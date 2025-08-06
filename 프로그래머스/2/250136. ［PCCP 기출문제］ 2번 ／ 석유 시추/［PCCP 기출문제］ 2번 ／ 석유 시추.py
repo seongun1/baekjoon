@@ -1,37 +1,35 @@
 from collections import deque
 def solution(land):
+    dx = [1,-1,0,0]
+    dy = [0,0,1,-1]
     answer = 0
-    col = len(land)
-    row = len(land[0])
-    land_per_row = [0] *(row)
-    
-    visited= [[False] *row for _ in range(col)]
-    
-    def dfs(x,y):
-        dx = [0,0,1,-1]
-        dy = [1,-1,0,0]
-        que = deque()
-        que.append((x,y))
-        count =0
-        visited[x][y] = True
-        arr =set()
-        arr.add(y)
-        while (que):
-            count +=1
-            cur_x,cur_y = que.popleft()
-            for i in range(4): #현재위치에서 상하좌우만큼 탐색
-                nx,ny = cur_x + dx[i],cur_y + dy[i]
-                if (0<=nx <col and 0<=ny < row) and not visited[nx][ny] and land[nx][ny]:
-                    que.append((nx,ny))
+    n,m = len(land),len(land[0])
+    arr =[] #석유가 묻어져 있는 좌표
+    visited = [[False for _ in range(m)] for _ in range(n)]
+    def bfs(i,j):
+        cols_oil = set()
+        n,m = len(land),len(land[0])
+        val =1
+        que =deque()
+        que.append((i,j))
+        while que:
+            x,y = que.popleft()
+            visited[x][y] = True
+            cols_oil.add(y)
+            for k in range(4):
+                nx,ny = x + dx[k], y + dy[k]
+                if 0<=nx<n and 0<=ny<m and not visited[nx][ny] and land[nx][ny]:
                     visited[nx][ny] = True
-                    arr.add(ny)
-        return count,arr
-    for y in range(row):
-        oil = 0
-        for x in range(col):
-            if not visited[x][y] and land[x][y]:
-                oil,arr= dfs(x,y)
-                for a in arr:
-                    land_per_row[a] += oil
-    
-    return max(land_per_row)
+                    que.append((nx,ny))
+                    val +=1
+        return val,list(cols_oil)
+    #석유 지도를 만듦
+    cols_oil = [0] * m
+    for i in range(n):
+        ans = 0
+        for j in range(m):
+            if not visited[i][j] and land[i][j]:
+                ans , cols = bfs(i,j)
+                for c in cols:
+                    cols_oil[c] += ans
+    return max(cols_oil)
