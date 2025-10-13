@@ -23,7 +23,7 @@ def sum_abs_diff(d1,d2):
     keys = set(d1.keys()) | set(d2.keys())
     total = 0
     for k in keys:
-        total += abs(d1.get(k,0) - d2.get(k,0))
+        total += abs(d1[k] - d2[k])
     return total
 
 def is_same(candi):
