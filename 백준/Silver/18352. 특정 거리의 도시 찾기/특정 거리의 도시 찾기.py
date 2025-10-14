@@ -1,30 +1,47 @@
+## 복복습
+
 import sys
 from collections import deque
-input = sys.stdin.readline
-n,m,k,x = map(int,input().split())
 
-arr =[[] for _ in range(n+1)]
+n,m,k,x = map(int,sys.stdin.readline().strip().split())
+
+adj = [[] for _ in range(n+1)]
+
 for _ in range(m):
-    a,b = map(int,input().split())
-    arr[a].append(b)
-#print(arr)
+    s,e = map(int,sys.stdin.readline().strip().split())
+    adj[s].append(e)
 
 que = deque()
-distance = [-1] *(n+1)
-#print(visited)
-distance[x] = 0
-que.append(x)
 
-while (que):
-    start = que.popleft()
-    for i in arr[start]:
-        if distance[i] == -1:
-            distance[i] = distance[start] + 1
-            que.append(i)
+dis = 1
+distance = [list() for _ in range(n+1)]
+visited = [False] * (n+1)
+visited[x] = True
 
-ans = [i for i in range(1,n+1) if distance[i] == k]
+if k==0:
+    print(x)
+    sys.exit()
+
+for city in adj[x]:
+    if not visited[city]:
+        distance[1].append(city)
+        visited[city] =True
+        que.append((city , dis))
+
+while que:
+    start, dis = que.popleft()
+    if dis >= k:
+        continue
+    for city in adj[start]:
+        if not visited[city]:
+            que.append((city,dis +1 ))
+            visited[city] = True
+            distance[dis+1].append(city)
+
+ans = distance[k]
 ans.sort()
-if not ans:
-    print(-1)
+if ans:
+    for a in ans:
+        print(a)
 else:
-    print(*ans, sep= '\n')
+    print(-1)
