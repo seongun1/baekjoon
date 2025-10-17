@@ -1,7 +1,7 @@
 import sys
 
-s = sys.stdin.readline().rstrip('\n')
-bomb = sys.stdin.readline().rstrip('\n')
+s = sys.stdin.readline().strip()
+bomb = sys.stdin.readline().rstrip()
 blen = len(bomb)
 
 stack = []
